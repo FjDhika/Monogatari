@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 05, 2020 at 03:30 PM
+-- Generation Time: Apr 05, 2020 at 04:35 PM
 -- Server version: 10.1.40-MariaDB
 -- PHP Version: 7.3.5
 
@@ -90,8 +90,21 @@ CREATE TABLE `story_genres` (
 --
 -- Table structure for table `users`
 --
--- Error reading structure for table monogatari.users: #1932 - Table 'monogatari.users' doesn't exist in engine
--- Error reading data for table monogatari.users: #1064 - You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM `monogatari`.`users`' at line 1
+
+CREATE TABLE `users` (
+  `USER_ID` varchar(16) COLLATE utf8_bin NOT NULL,
+  `PROFILE_ID` varchar(16) COLLATE utf8_bin DEFAULT NULL,
+  `USERNAME` varchar(16) COLLATE utf8_bin NOT NULL,
+  `PASSWORD` varchar(16) COLLATE utf8_bin NOT NULL,
+  `DATE_CREATED` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`USER_ID`, `PROFILE_ID`, `USERNAME`, `PASSWORD`, `DATE_CREATED`) VALUES
+('5e89ec55204f8', '5e89ec55204f4', 'FA', 'pasword', '2020-04-05');
 
 -- --------------------------------------------------------
 
@@ -112,7 +125,7 @@ CREATE TABLE `users_profile` (
 --
 
 INSERT INTO `users_profile` (`PROFILE_ID`, `USER_ID`, `DISPLAY_NAME`, `BIRTH_DATE`, `GENDER`) VALUES
-('5e898702585e5', '5e898702585e9', NULL, NULL, NULL);
+('5e89ec55204f4', '5e89ec55204f8', NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -130,8 +143,8 @@ ALTER TABLE `chapters`
 --
 ALTER TABLE `favorites`
   ADD PRIMARY KEY (`FAVORITE_ID`),
-  ADD KEY `FK_RELATIONSHIP_6` (`USER_ID`),
-  ADD KEY `FK_RELATIONSHIP_7` (`STORY_ID`);
+  ADD KEY `FK_RELATIONSHIP_5` (`USER_ID`),
+  ADD KEY `FK_RELATIONSHIP_6` (`STORY_ID`);
 
 --
 -- Indexes for table `genres`
@@ -151,7 +164,13 @@ ALTER TABLE `stories`
 --
 ALTER TABLE `story_genres`
   ADD PRIMARY KEY (`STORY_ID`,`GENRE_ID`),
-  ADD KEY `FK_RELATIONSHIP_5` (`GENRE_ID`);
+  ADD KEY `FK_STORY_GENRE2` (`GENRE_ID`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`USER_ID`);
 
 --
 -- Indexes for table `users_profile`
@@ -174,8 +193,8 @@ ALTER TABLE `chapters`
 -- Constraints for table `favorites`
 --
 ALTER TABLE `favorites`
-  ADD CONSTRAINT `FK_RELATIONSHIP_6` FOREIGN KEY (`USER_ID`) REFERENCES `users` (`USER_ID`),
-  ADD CONSTRAINT `FK_RELATIONSHIP_7` FOREIGN KEY (`STORY_ID`) REFERENCES `stories` (`STORY_ID`);
+  ADD CONSTRAINT `FK_RELATIONSHIP_5` FOREIGN KEY (`USER_ID`) REFERENCES `users` (`USER_ID`),
+  ADD CONSTRAINT `FK_RELATIONSHIP_6` FOREIGN KEY (`STORY_ID`) REFERENCES `stories` (`STORY_ID`);
 
 --
 -- Constraints for table `stories`
@@ -187,8 +206,14 @@ ALTER TABLE `stories`
 -- Constraints for table `story_genres`
 --
 ALTER TABLE `story_genres`
-  ADD CONSTRAINT `FK_RELATIONSHIP_4` FOREIGN KEY (`STORY_ID`) REFERENCES `stories` (`STORY_ID`),
-  ADD CONSTRAINT `FK_RELATIONSHIP_5` FOREIGN KEY (`GENRE_ID`) REFERENCES `genres` (`GENRE_ID`);
+  ADD CONSTRAINT `FK_STORY_GENRE` FOREIGN KEY (`STORY_ID`) REFERENCES `stories` (`STORY_ID`),
+  ADD CONSTRAINT `FK_STORY_GENRE2` FOREIGN KEY (`GENRE_ID`) REFERENCES `genres` (`GENRE_ID`);
+
+--
+-- Constraints for table `users`
+--
+ALTER TABLE `users`
+  ADD CONSTRAINT `FK_USER_TO_PROFILE` FOREIGN KEY (`PROFILE_ID`) REFERENCES `users_profile` (`PROFILE_ID`);
 
 --
 -- Constraints for table `users_profile`
