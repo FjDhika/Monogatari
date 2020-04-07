@@ -54,7 +54,9 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 // Route for Login Feature
-$route['signin'] = 'LoginController';
+$route['signin-form'] = 'LoginController';
+$route['signin'] = 'LoginController/prosesLogin';
 
 // Route for Register Feature
-$route['signup'] = 'RegisterController';
+$route['signup-form'] = 'RegisterController';
+$route['signup'] = 'RegisterController/prosesRegist';
