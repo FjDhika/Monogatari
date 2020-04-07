@@ -14,7 +14,11 @@ class RegisterController extends CI_Controller
 	}
 
 	function index(){
+		$data['page_title'] = $this->page_title;
+		$this->load->view("registerView",$data);
+	}
 
+	function prosesRegist(){
 		// get $_POST data and validate
 		if ($this->input->get_post('submit')) {
 			$username = $this->input->get_post('username');
@@ -22,12 +26,15 @@ class RegisterController extends CI_Controller
 			$time = local_to_gmt(time());
 			$date = mdate('%Y/%m/%d');
 
-			$this->userModel->addUser($username,$password,$date);
-			
-		}
+			$result = $this->userModel->addUser($username,$password,$date);
+			if($result){
+				// direct ke dashboard;
+			}else{
+				echo "<script type='text/javascript'>alert('username telah digunakan');"
+					  ."location='".site_url('/signup-form')."';</script>";
+			}
 
-		$data['page_title'] = $this->page_title;
-		$this->load->view("registerView",$data);
+		}
 	}
 }
 

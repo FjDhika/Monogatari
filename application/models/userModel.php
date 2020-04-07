@@ -30,7 +30,7 @@ class userModel extends CI_Model
 
 	}
 
-	// function to add user(register), it return boolean
+	// function to add user(register), it return boolean (register success or not)
 	// @params $username is new username, $passwor is new password
 	// @params $date is date user register
 	function addUser($username,$password,$date){
@@ -39,12 +39,32 @@ class userModel extends CI_Model
 		$data=array('username'=>$username,
 					'password'=>$password,
 					'user_id'=>$uuidUser,
-					'profile_id'=>$uuidProfile,
 					'date_created'=>$date);
 
-		$this->db->insert('users',$data);
-		$this->db->insert('users_profile',array('user_id'=>$uuidUser,
-												'profile_id'=>$uuidProfile));
+		$validate = $this->validateRegistration($username,$uuidUser,$uuidProfile);
+
+		if ($validate) {
+			$this->db->insert('users',$data);
+			$this->db->insert('users_profile',array('user_id'=>$uuidUser,
+													'profile_id'=>$uuidProfile));
+			$this->db->update('users',array('profile_id'=>$uuidProfile),"user_id = '$uuidUser'");
+
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	private function validateRegistration($username,$userid,$profileid){
+		$this->db->or_where(array('username'=>$username,'user_id'=>$userid));
+		$user = $this->db->select('*')
+						 ->get('users')
+						 ->result();
+		$profile = $this->db->get_where('users_profile',array('profile_id'=>$profileid))
+							->result();
+
+		return sizeof($user)!=0 && sizeof($profile) != 0;
+		// var_dump($user);
 	}
 }
 

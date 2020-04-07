@@ -14,6 +14,11 @@ class LoginController extends CI_Controller
 	}
 	
 	function index(){
+		$data['page_title'] = $this->page_title;
+		$this->load->view("loginView",$data);
+	}
+
+	function prosesLogin(){
 		// checking data for log in auth
 
 		if ($this->input->get_post('submit')) {
@@ -27,11 +32,11 @@ class LoginController extends CI_Controller
 							  'profileid' => $auth[0]->profile_id);
 				$this->session->set_userdata($data);
 
-				$data['page_title'] = $this->page_title;
-				$this->load->view("loginView",$data);
+				// redirect ke dashboard
 			}else{
-				echo "<script type='text/javascript'>alert('username/password salah!');</script>";
-				echo "<script>window.history.back()</script>";
+				echo "<script type='text/javascript'>alert('username/password salah!');"
+					  ."location='".site_url('/signin-form')."';</script>";
+
 			}
 
 		}
