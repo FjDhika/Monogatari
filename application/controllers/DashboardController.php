@@ -6,17 +6,19 @@
  */
 class DashboardController extends CI_Controller
 {
-	
+	private $page_title = "Dashboard"; 
 	function __construct(){
 		parent::__construct();
 	}
 
 	function index(){
-		$userid = $this->input->session['userid'];
-		if (isset($userid)) {
-			$this->load->view("dashboardView");	
+		$userid = $this->session->userid;
+		$data['page_title'] = $this->page_title;
+
+		if ($userid) {
+			$this->load->view("dashboardView",$data);	
 		}else{
-			redirect(site_url('/signin'));	
+			redirect(site_url('/signin-form'));	
 		}
 	}
 }

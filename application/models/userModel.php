@@ -16,7 +16,7 @@ class userModel extends CI_Model
 	function getAuth($username,$password){
 		$data = array('username'=>$username,
 					  'password'=>$password);
-		$user = $this->db->select('user_id,profile_id')
+		$user = $this->db->select('user_id,profile_id,username')
 						 ->from('users')
 						 ->where($data);
 		$result = $user->get()->result();

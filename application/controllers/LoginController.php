@@ -26,13 +26,16 @@ class LoginController extends CI_Controller
 			$password = $this->input->get_post('password');
 
 			$auth = $this->userModel->getAuth($username,$password);
+
 			if ($auth) {
 				
 				$data = array('userid' => $auth[0]->user_id,
-							  'profileid' => $auth[0]->profile_id);
+							  'profileid' => $auth[0]->profile_id,
+							  'username'=>$auth[0]->username);
 				$this->session->set_userdata($data);
 
-				// redirect ke dashboard
+				redirect(site_url('/dashboard'));
+				
 			}else{
 				echo "<script type='text/javascript'>alert('username/password salah!');"
 					  ."location='".site_url('/signin-form')."';</script>";

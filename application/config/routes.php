@@ -63,3 +63,7 @@ $route['signup'] = 'RegisterController/prosesRegist';
 
 //Route for Dashboard
 $route['dashboard'] = 'DashboardController';
+
+//Route fo Profile
+$route['profile'] = "ProfileController";
+$route['editProfile'] = "ProfileController/editForm";
