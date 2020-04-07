@@ -58,3 +58,6 @@ $route['signin'] = 'LoginController';
 
 // Route for Register Feature
 $route['signup'] = 'RegisterController';
+
+//Route for Dashboard
+$route['dashboard'] = 'DashboardController';
