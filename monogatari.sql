@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 05, 2020 at 04:35 PM
+-- Generation Time: Apr 08, 2020 at 09:46 AM
 -- Server version: 10.1.40-MariaDB
 -- PHP Version: 7.3.5
 
@@ -104,7 +104,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`USER_ID`, `PROFILE_ID`, `USERNAME`, `PASSWORD`, `DATE_CREATED`) VALUES
-('5e89ec55204f8', '5e89ec55204f4', 'FA', 'pasword', '2020-04-05');
+('5e89ec55204f8', '5e89ec55204f4', 'FA', 'pasword', '2020-04-05'),
+('5e8bd8f21e307', '5e8bd8f21e303', 'FB', 'pasword', '2020-04-07');
 
 -- --------------------------------------------------------
 
@@ -117,15 +118,17 @@ CREATE TABLE `users_profile` (
   `USER_ID` varchar(16) COLLATE utf8_bin NOT NULL,
   `DISPLAY_NAME` varchar(16) COLLATE utf8_bin DEFAULT NULL,
   `BIRTH_DATE` date DEFAULT NULL,
-  `GENDER` varchar(12) COLLATE utf8_bin DEFAULT NULL
+  `GENDER` varchar(12) COLLATE utf8_bin DEFAULT NULL,
+  `PROFILE_IMAGE` varchar(50) COLLATE utf8_bin DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Dumping data for table `users_profile`
 --
 
-INSERT INTO `users_profile` (`PROFILE_ID`, `USER_ID`, `DISPLAY_NAME`, `BIRTH_DATE`, `GENDER`) VALUES
-('5e89ec55204f4', '5e89ec55204f8', NULL, NULL, NULL);
+INSERT INTO `users_profile` (`PROFILE_ID`, `USER_ID`, `DISPLAY_NAME`, `BIRTH_DATE`, `GENDER`, `PROFILE_IMAGE`) VALUES
+('5e89ec55204f4', '5e89ec55204f8', 'Fajar Andhika', '1999-04-13', 'Male', ''),
+('5e8bd8f21e303', '5e8bd8f21e307', 'sunu', '2020-04-01', 'Male', '');
 
 --
 -- Indexes for dumped tables
@@ -170,7 +173,9 @@ ALTER TABLE `story_genres`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`USER_ID`);
+  ADD PRIMARY KEY (`USER_ID`),
+  ADD UNIQUE KEY `USERNAME` (`USERNAME`),
+  ADD KEY `FK_USER_TO_PROFILE` (`PROFILE_ID`);
 
 --
 -- Indexes for table `users_profile`

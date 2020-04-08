@@ -6,6 +6,7 @@
  */
 class ProfileController extends CI_Controller
 {
+	private $page_title = "Profile"; 
 	
 	function __construct(){
 		parent::__construct();
@@ -22,6 +23,7 @@ class ProfileController extends CI_Controller
 			$data['age'] = ($result[0]->BIRTH_DATE != null)?calculateDate($result[0]->BIRTH_DATE):"-";
 			$data['gender'] = ($result[0]->GENDER != null)?$result[0]->GENDER:"-";
 
+			$data['page_title'] = $this->page_title;
 			$this->load->view('profiles/profileView',$data);
 		}else{
 			redirect(site_url('/signin-form'));
@@ -38,6 +40,7 @@ class ProfileController extends CI_Controller
 			$data['date'] = $result[0]->BIRTH_DATE;
 			$data['gender'] = $result[0]->GENDER;
 
+			$data['page_title'] = "Edit ".$this->page_title;
 			$this->load->view('profiles/editProfileView',$data);
 		}else{
 			redirect(site_url('/signin-form'));
