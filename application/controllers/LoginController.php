@@ -11,11 +11,16 @@ class LoginController extends CI_Controller
 	function __construct(){
 		parent::__construct();
 		$this->load->model('userModel');
+		$this->load->model('userProfileModel','profile');
 	}
 	
 	function index(){
-		$data['page_title'] = $this->page_title;
-		$this->load->view("loginView",$data);
+		if(isset($this->session->userid)){
+			redirect(site_url('/dashboard'));
+		}else{
+			$data['page_title'] = $this->page_title;
+			$this->load->view("loginView",$data);
+		}
 	}
 
 	function prosesLogin(){
@@ -28,10 +33,15 @@ class LoginController extends CI_Controller
 			$auth = $this->userModel->getAuth($username,$password);
 
 			if ($auth) {
-				
+				$profile = $this->profile->getNameAndImage($auth[0]->profile_id);
+				$display = ($profile[0]->DISPLAY_NAME != null) ? $profile[0]->DISPLAY_NAME : $auth[0]->username;
+				$image = ($profile[0]->PROFILE_IMAGE != null) ? base_url("assets/image/".$profile[0]->PROFILE_IMAGE) : base_url('assets/image/a.128.jpg');
 				$data = array('userid' => $auth[0]->user_id,
 							  'profileid' => $auth[0]->profile_id,
-							  'username'=>$auth[0]->username);
+							  'username'=>$auth[0]->username,
+							  'display'=>$display,
+							  'image'=>$image);
+
 				$this->session->set_userdata($data);
 
 				redirect(site_url('/dashboard'));
@@ -42,7 +52,21 @@ class LoginController extends CI_Controller
 
 			}
 
+		}else{
+			redirect(site_url('/signin-form'));
 		}
+	}
+
+	function authout(){
+		unset(
+			$_SESSION['userid'],
+			$_SESSION['profileid'],
+			$_SESSION['username'],
+			$_SESSION['display'],
+			$_SESSION['image']
+		);
+
+		redirect(base_url());
 	}
 
 }

@@ -13,8 +13,12 @@ class LandingPageController extends CI_Controller
 	}
 	
 	function index(){
-		$data['page_title'] = $this->page_title;
-		$this->load->view("landingPageView",$data);
+		if (isset($this->session->userid)) {
+			redirect(site_url('/dashboard'));
+		}else{
+			$data['page_title'] = $this->page_title;
+			$this->load->view("landingPageView",$data);	
+		}
 	}
 }
 

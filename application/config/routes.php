@@ -56,6 +56,7 @@ $route['translate_uri_dashes'] = FALSE;
 // Route for Login Feature
 $route['signin-form'] = 'LoginController';
 $route['signin'] = 'LoginController/prosesLogin';
+$route['signout'] = 'LoginController/authout';
 
 // Route for Register Feature
 $route['signup-form'] = 'RegisterController';
@@ -67,3 +68,4 @@ $route['dashboard'] = 'DashboardController';
 //Route fo Profile
 $route['profile'] = "ProfileController";
 $route['editProfile'] = "ProfileController/editForm";
+$route['editProses'] = "ProfileController/editProcess";

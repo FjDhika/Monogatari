@@ -14,8 +14,12 @@ class RegisterController extends CI_Controller
 	}
 
 	function index(){
-		$data['page_title'] = $this->page_title;
-		$this->load->view("registerView",$data);
+		if (isset($this->session->userid)) {
+			redirect(site_url('/dashboard'));
+		}else{
+			$data['page_title'] = $this->page_title;
+			$this->load->view("registerView",$data);
+		}
 	}
 
 	function prosesRegist(){
@@ -28,12 +32,15 @@ class RegisterController extends CI_Controller
 
 			$result = $this->userModel->addUser($username,$password,$date);
 			if($result){
-				// direct ke dashboard;
+				echo "<script type='text/javascript'>alert('Registration Complate".\n." please signin to continue');"
+					  ."location='".base_url()."';</script>";
 			}else{
 				echo "<script type='text/javascript'>alert('username telah digunakan');"
 					  ."location='".site_url('/signup-form')."';</script>";
 			}
 
+		}else{
+			redirect(site_url('/signup-form'));
 		}
 	}
 }

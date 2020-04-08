@@ -17,6 +17,18 @@ class userProfileModel extends CI_Model
 						->get()
 						->result();
 	}
+
+	function getNameAndImage($profileid){
+		return $this->db->select("DISPLAY_NAME, PROFILE_IMAGE")
+						->from('users_profile')
+						->where(array('profile_id'=>$profileid))
+						->get()
+						->result();
+	}
+
+	function updateProfile($profileid,$data){
+		return $this->db->update('users_profile',$data,"PROFILE_ID = '$profileid'");
+	}
 }
 
  ?>

@@ -8,12 +8,12 @@
 	</a>
 	<header class="background background-lg" style="background-color: #7BA8C1;">
 		<div class="avatar avatar-profile center-block">
-			<img src="<?= base_url('/assets/image/a.128.jpg') ?>" aria-hidden="true" alt="<?=$name?>">
+			<img src="<?= $_SESSION['image'] ?>" aria-hidden="true" alt="<?=$name?>">
 		</div>
 		<div class="badges">
 			<h1 class="profile-name h3" aria-label="<?=$name?>"><?= $name ?></h1>
 		</div>
-		<p id="alias" aria-label="also known as <?= $name ?>">@<?= $name ?></p><br>
+		<p id="alias" aria-label="also known as <?= $name ?>">@<?= $_SESSION['username'] ?></p><br>
 	</header>
 </div>
 

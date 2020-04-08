@@ -6,8 +6,7 @@
 
 	<div class="container">
 		<h5>ini dashboard</h5>
-		<!-- nanti disini nampilin profile -->
-		<a href="#" class="btn btn-primary">edit profile</a>
+		tolotng ini nanti diisi sama list cerita semacam discovery
 	</div>
 </div>
 
