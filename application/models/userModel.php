@@ -26,9 +26,9 @@ class userModel extends CI_Model
 
 	//function to get userProfile, it return profile data
 	// @params $id is user id
-	function getUserProfile($id){
+	// function getUserProfile($id){
 
-	}
+	// }
 
 	// function to add user(register), it return boolean (register success or not)
 	// @params $username is new username, $passwor is new password

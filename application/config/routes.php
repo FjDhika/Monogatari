@@ -65,7 +65,12 @@ $route['signup'] = 'RegisterController/prosesRegist';
 //Route for Dashboard
 $route['dashboard'] = 'DashboardController';
 
-//Route fo Profile
+//Route for Profile
 $route['profile'] = "ProfileController";
 $route['editProfile'] = "ProfileController/editForm";
 $route['editProses'] = "ProfileController/editProcess";
+
+//Route for Story
+$route['new-story'] = "StoryController";
+$route['new-story/proses'] = "StoryController/newStoryProses";
+$route['story/(:any)'] = "StoryController/detailStory/$1";

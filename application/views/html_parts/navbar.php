@@ -8,7 +8,7 @@
 						<span>Write</span>
 					</a>
 					<div class="dropdown-menu" aria-labelledby="createNavbar">
-						<a class="dropdown-item" href="#">New Story</a>
+						<a class="dropdown-item" href="<?= site_url("/new-story") ?>">New Story</a>
 						<a class="dropdown-item" href="#">My Story </a>
 					</div>
 				</li>

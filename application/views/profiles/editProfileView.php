@@ -45,7 +45,7 @@
 					</div>
 
 					<button class="btn btn-orange" type="submit">
-						<span style="color: #fff;">submit</span>
+						<span>submit</span>
 					</button>
 				</form>
 			</div>
