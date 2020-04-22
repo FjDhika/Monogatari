@@ -1,7 +1,9 @@
 <nav class="navbar sticky-top navbar-expand-sm navbar-dark bg-dark">
 	<div class="container">
 		<!-- <div class="navbar-header"> -->
-			<a class="navbar-brand" href="<?= base_url(); ?>">Monogatari</a>
+			<a class="navbar-brand" href="#">
+			    <img src="assets/image/logo3.png" height="40" alt="">
+			</a>
 			<ul class="navbar-nav ml-auto">
 				<li class="dropdown nav-item">
 					<a class="dropdown-toggle nav-link" href="" id="createNavbar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

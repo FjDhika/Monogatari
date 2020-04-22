@@ -1,4 +1,5 @@
 <?php require_once "html_parts/html_head.php" ?>
+<?php require_once "html_parts/navhome.php" ?>
 
 <div class="container">
 	<button type="button" class="btn btn-lg btn-block btn-outline-warning" data-toggle="modal" data-target="#register">Register</button>

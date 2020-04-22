@@ -6,7 +6,7 @@
  */
 class LandingPageController extends CI_Controller
 {
-	private $page_title = "Landing Page/Home";
+	private $page_title = "Home - Monogatari";
 	
 	function __construct(){
 		parent::__construct();

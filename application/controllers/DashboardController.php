@@ -6,7 +6,7 @@
  */
 class DashboardController extends CI_Controller
 {
-	private $page_title = "Dashboard"; 
+	private $page_title = "Dashboard - Monogatari"; 
 	function __construct(){
 		parent::__construct();
 	}
