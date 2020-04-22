@@ -5,11 +5,11 @@
 			<ul class="navbar-nav ml-auto">
 				<li class="dropdown nav-item">
 					<a class="dropdown-toggle nav-link" href="" id="createNavbar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<span>Write</span>
+						<span>Stories</span>
 					</a>
 					<div class="dropdown-menu" aria-labelledby="createNavbar">
 						<a class="dropdown-item" href="<?= site_url("/new-story") ?>">New Story</a>
-						<a class="dropdown-item" href="#">My Story </a>
+						<a class="dropdown-item" href="<?= site_url("/story/discover/my") ?>">My Story </a>
 					</div>
 				</li>
 				<li class="dropdown nav-item">

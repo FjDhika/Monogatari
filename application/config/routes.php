@@ -74,3 +74,6 @@ $route['editProses'] = "ProfileController/editProcess";
 $route['new-story'] = "StoryController";
 $route['new-story/proses'] = "StoryController/newStoryProses";
 $route['story/(:any)'] = "StoryController/detailStory/$1";
+$route['story/(:any)/edit'] = "StoryController/editStoryPage/$1";
+$route['story/edit/proses/(:any)'] = "StoryController/editStoryProses/$1";
+$route['story/discover/(:any)'] = "StoryController/discoverPage/$1";

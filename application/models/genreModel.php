@@ -17,6 +17,7 @@ class genreModel extends CI_Model{
 		return $this->db->select('GENRE_NAME')
 						->from('genres')
 						->or_where_in($genreids)
+					    ->order_by('GENRE_ID')
 						->get()
 						->result();
 	}

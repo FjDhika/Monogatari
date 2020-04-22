@@ -17,10 +17,12 @@
 							} ?>
 						</span></h5>
 					</div>
-					<div class="col-lg-1">
-						<button class="btn btn-orange btn-sm" style="height: 40px; float: right;">
-							<span>edit</span>
-						</button>
+					<div class="col-lg-1" >
+						<?php if ($story[0]->USER_ID == $this->session->userid) { ?>
+								<a class="btn btn-orange btn-sm" style="float: right;" href="<?= $story[0]->STORY_ID.'/edit' ?>">
+									<span>edit</span>
+								</a>
+						<?php } ?>
 					</div>
 				</div>
 				

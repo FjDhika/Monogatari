@@ -29,11 +29,40 @@ class StoryModel extends CI_Model
 
 	}
 
+	function updateStory($id,$title,$synopsis,$cover, $genres){
+
+		$time = local_to_gmt(time());
+		$now = mdate('%Y/%m/%d');
+		$data = array(	'STORY_ID' => $id,
+						'USER_ID' => $this->session->userid,
+						'STORY_TITLE' => $title,
+						'SYNOPSIS' => $synopsis,
+						'COVER' => $cover,
+						'DATE_ADDED' => $now,
+						'DATE_UPDATED' => $now);
+		
+		$result = $this->db->replace('stories',$data);
+		if($result){
+			return $this->updateGenres($id,$genres);
+		}
+
+	}
+
 	function insertGenres($storyid,$genres){
 		$data=array();
 		foreach ($genres as $key => $value) {
 			$data[$key] = array( 'STORY_ID' => $storyid, 'GENRE_ID' => $value);
 		}
+		return $this->db->insert_batch('story_genres',$data);
+	}
+
+	function updateGenres($storyid,$genres){
+		$data=array();
+		foreach ($genres as $key => $value) {
+			$data[$key] = array( 'STORY_ID' => $storyid, 'GENRE_ID' => $value);
+		}
+		$this->db->where('STORY_ID',$storyid);
+		$this->db->delete('story_genres');
 		return $this->db->insert_batch('story_genres',$data);
 	}
 

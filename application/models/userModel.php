@@ -63,7 +63,7 @@ class userModel extends CI_Model
 		$profile = $this->db->get_where('users_profile',array('profile_id'=>$profileid))
 							->result();
 
-		return sizeof($user)!=0 && sizeof($profile) != 0;
+		return sizeof($user)==0 && sizeof($profile) == 0;
 		// var_dump($user);
 	}
 }
