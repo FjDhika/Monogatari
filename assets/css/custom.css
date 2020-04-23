@@ -15,8 +15,6 @@ p{
 	margin: 0 0 12px;
 }
 
-<<<<<<< Updated upstream
-=======
 ul.navbar-nav li.nav-item{
 	margin-left: 8px;
 }
@@ -39,11 +37,38 @@ ul.navbar-nav li.nav-item{
 	color:white;
 }
 
->>>>>>> Stashed changes
 .btn-orange{
 	color: #fff;
 	background-color: #ff6122;
 	border-color: transparent;
+}
+
+.btn-grey{
+	color: #222;
+	background-color: #eee;
+	border-color: #eee;
+}
+
+.btn.btn-orange span{
+	color: #fff;
+}
+
+.span-bold{
+	font-weight: bold;
+}
+
+.text-white{
+	color: #fff;
+}
+
+.image-placeholder{
+	display: block;
+	width: 256px;
+	height: 400px;
+	background-color: #eee;
+	border: 1px solid #eee;
+	margin: 0 auto;
+	position: relative;
 }
 
 #profile-dropdown .avatar{

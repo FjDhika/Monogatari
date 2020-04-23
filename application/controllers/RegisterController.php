@@ -32,7 +32,7 @@ class RegisterController extends CI_Controller
 
 			$result = $this->userModel->addUser($username,$password,$date);
 			if($result){
-				echo "<script type='text/javascript'>alert('Registration Complate"." please signin to continue');"
+				echo "<script type='text/javascript'>alert('Registration Complate please signin to continue');"
 					  ."location='".base_url()."';</script>";
 			}else{
 				echo "<script type='text/javascript'>alert('username telah digunakan');"

@@ -4,7 +4,7 @@
 <div class="profile-layout">
 	<a class="btn btn-orange" id="edit" href="<?= site_url('/editProfile') ?>">
 		<span class="fa fa-settings fa-wp-neutral-2" aria-hidden="true" style="font-size: 16px;"></span>
-		<span style="color: #fff;">Edit Profile</span>
+		<span>Edit Profile</span>
 	</a>
 	<header class="background background-lg" style="background-color: #7BA8C1;">
 		<div class="avatar avatar-profile center-block">
