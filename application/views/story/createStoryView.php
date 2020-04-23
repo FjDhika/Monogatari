@@ -6,7 +6,6 @@
 		$link = site_url('story/edit/proses/'.$story[0]->STORY_ID);
 	else
 		$link = site_url('new-story/proses');
-
 ?>
 
 <div class="container" style="margin-top: 12px;">

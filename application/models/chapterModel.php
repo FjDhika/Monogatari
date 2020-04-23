@@ -39,10 +39,29 @@ class chapterModel extends CI_Model
 		return $this->db->delete('chapters',array('CHAPTER_ID' => $chapterid));
 	}
 
+	function deleteChapterByStoryID($storyid){
+		return $this->db->delete('chapters',array('STORY_ID' => $storyid));
+	}
+
 	function getChapterByID($chapterid){
 		$chapter = $this->db->get_where('chapters',array('CHAPTER_ID'=>$chapterid))
 						->result();
 		return @$chapter[0];
+	}
+
+	function getChapterByStoryID($storyid){
+		$chapter = $this->db->get_where('chapters',array('STORY_ID'=>$storyid))
+						->result();
+		return $chapter;
+	}
+
+	function getChapterTotal($storyid){
+        $result = $this->db->select("COUNT(*) as num")
+        		 		   ->where('STORY_ID',$storyid)
+        		 		   ->get("chapters")
+        		 		   ->row();
+        if(isset($result)) return $result->num;
+        return 0;
 	}
 }
 

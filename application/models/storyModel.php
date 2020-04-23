@@ -31,6 +31,11 @@ class StoryModel extends CI_Model
 
 	function updateStory($id,$title,$synopsis,$cover, $genres){
 
+		$oldStoriesCover = $this->getStory($id);
+		if(!isset($cover)){
+			$cover = $oldStoriesCover[0]->COVER;
+		}
+
 		$time = local_to_gmt(time());
 		$now = mdate('%Y/%m/%d');
 		$data = array(	'STORY_ID' => $id,
@@ -66,6 +71,10 @@ class StoryModel extends CI_Model
 		return $this->db->insert_batch('story_genres',$data);
 	}
 
+	function deleteStory($storyid){
+		return $this->db->delete('stories',array('STORY_ID'=>$storyid));
+	}
+
 	function getStory($storyid){
 		$story = $this->db->get_where('stories',array('STORY_ID'=>$storyid))
 						->result();
@@ -73,6 +82,12 @@ class StoryModel extends CI_Model
 									   ->from('story_genres')
 									   ->where(array('STORY_ID'=>$storyid))
 									   ->get()->result();
+		return $story;
+	}
+
+	function getStoryByUserID($userid){
+		$story = $this->db->get_where('stories',array('USER_ID'=>$userid))
+						->result();
 		return $story;
 	}
 }

@@ -75,9 +75,12 @@ $route['new-story'] = "StoryController";
 $route['new-story/proses'] = "StoryController/newStoryProses";
 $route['story/(:any)'] = "StoryController/detailStory/$1";
 $route['story/(:any)/edit'] = "StoryController/editStoryPage/$1";
+$route['story/(:any)/delete'] = "StoryController/deleteStoryProses/$1";
 $route['story/edit/proses/(:any)'] = "StoryController/editStoryProses/$1";
 $route['story/discover/(:any)'] = "StoryController/discoverPage/$1";
-	//Route for chapter
+// $route['story/get-chapter/(:any)'] = "StoryController/loadChapters/$1";
+
+//Route for chapter
 $route['chapter/tiny-mce-upload'] = 'StoryController/tinymceUpload';
 $route['chapter/tiny-mce-delete'] = 'StoryController/delete_image';
 $route['chapter/read/(:any)'] = 'StoryController/renderChapterDetail/$1';

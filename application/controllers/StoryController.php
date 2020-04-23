@@ -11,19 +11,21 @@ class StoryController extends CI_Controller
 	function __construct(){
 		parent::__construct();
 		$this->load->helper('url');
+		$this->load->helper('renderTable');
 		$this->load->model('genreModel');
 		$this->load->model('storyModel');
 		$this->load->model('chapterModel');
 	}
-//========================= Function to manage stories =========================
+//=========================== Function to manage stories ========================
+	
 	// Cerita Baru
-
 	function index(){
 		$data['page_title'] = $this->page_title;
 		$data['genre'] = $this->genreModel->getGenres();
 		$this->load->view('story/createStoryView',$data);
 	}
 
+	// create new Story proses 
 	function newStoryProses(){
 		if($this->input->post('submit') != null){
 			$data = array();
@@ -57,19 +59,20 @@ class StoryController extends CI_Controller
 
 	// Menampilkan halaman detail cerita
 	function detailStory($storyid){
-		$data['page_title'] = $this->page_title;
 		$data = $this->getStoryData($storyid);
+		$data['page_title'] = "Detail ".$this->page_title;
+		$data['table'] = $this->renderChapterData($storyid,true);
 		$this->load->view("story/detailStoryView",$data);
 	}
 
 	// Edit Cerita and Edit Proses Cerita
-
 	function editStoryPage($storyid){
-		$data['page_title'] = $this->page_title;
 		$data = $this->getStoryData($storyid);
+		$data['page_title'] = "Edit ".$this->page_title;
 		$this->load->view('story/createStoryView',$data);
 	}
 
+	// Edit process for story 
 	function editStoryProses($storyid){
 		if($this->input->post('submit') != null){
 			$data = array();
@@ -97,6 +100,22 @@ class StoryController extends CI_Controller
 			}
 		}else{
 			// redirect(site_url('/signin-form'));
+		}
+	}
+
+	// function to delete story
+	function deleteStoryProses($storyid){
+		$deleteChapter = $this->chapterModel->deleteChapterByStoryID($storyid);
+		if ($deleteChapter) {
+			$deleteStory = $this->storyModel->deleteStory($storyid);
+
+			if($storyid)
+				echo "berhasil";
+			else
+				echo "gagal delete story";
+
+		}else{
+			echo "gagal delete chapter";
 		}
 	}
 //=========================== Function to manage Chapters =======================
@@ -205,12 +224,12 @@ class StoryController extends CI_Controller
 	function discoverPage($param){
 		$data['page_title'] = $this->page_title;
 		if ($param == 'my') {
-			$this->load->view('story/browseStory',$data);
+			$story = $this->storyModel->getStoryByUserID($this->session->userid);
 		}
+		$data['row'] = renderCardStory($story);
+		$this->load->view('story/browseStory',$data);
 	}
-
-
-//=========================== Heper Function ================================
+//================================= Heper Function ==============================
 	// function to retrieve story data
 	function getStoryData($storyid){
 		$data['story'] = $this->storyModel->getStory($storyid);
@@ -219,9 +238,29 @@ class StoryController extends CI_Controller
 		foreach ($data['story'][0]->GENRE_ID as $key => $value) {
 			 $genreids[$key] = $value->GENRE_ID;
 		}
-		$data['genres'] = $this->genreModel->getGenreName($genreids);
-
+		$genres = $this->genreModel->getGenreName($genreids);
+		foreach ($genres as $key => $value) {
+			$data['genres'][$genreids[$key]-1] = $value;
+		}
 		return $data;
+	}
+
+	// function to render chapter table
+	function renderChapterData($storyid, $ismine){
+		$data = array();
+		$chapter = $this->chapterModel->getChapterByStoryID($storyid);
+		// if ($ismine) {
+		foreach ($chapter as $key => $value) {
+			$data[] = "<tr>".
+						"<td>".($key+1)."</td>".
+						"<td>". $value->CHAPTER_TITLE." </td>".
+						"<td><a href='".site_url("chapter/read/".$value->CHAPTER_ID)."' class='btn btn-orange mr-1'>Read</a></td>".
+						"<td><a href='".site_url("chapter/edit/".$value->CHAPTER_ID)."' class='btn btn-warning mr-1'>Edit</a>".
+							"<a href='".site_url("chapter/delete/".$value->CHAPTER_ID)."' class='btn btn-danger mr-1'>delete</a>".
+				 "</tr>";
+		}
+		return $data;
+		// }
 	}
 }
 
