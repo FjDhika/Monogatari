@@ -85,10 +85,20 @@ class StoryModel extends CI_Model
 		return $story;
 	}
 
+	function getAllStory(){
+		return $this->db->get('stories')->result();
+
+	}
+
 	function getStoryByUserID($userid){
 		$story = $this->db->get_where('stories',array('USER_ID'=>$userid))
 						->result();
 		return $story;
+	}
+
+	function getStoryByGenreID($genreid){
+		$sql = 'select username,STORY_TITLE, STORY_ID, COVER from stories JOIN users ON stories.USER_ID = users.USER_ID and stories.STORY_ID in ( select STORY_ID from story_genres WHERE GENRE_ID = ?)';
+		return $this->db->query($sql,array($genreid))->result();
 	}
 }
 

@@ -67,6 +67,7 @@ $route['dashboard'] = 'DashboardController';
 
 //Route for Profile
 $route['profile'] = "ProfileController";
+$route['profile/(:any)'] = "ProfileController/viewProfile/$1";
 $route['editProfile'] = "ProfileController/editForm";
 $route['editProses'] = "ProfileController/editProcess";
 

@@ -8,8 +8,8 @@
 		</div>
 		<ul class="navbar-nav ml-auto">
 			<li class="nav-item">
-				<a class="btn btn-grey" href="">
-					<span class="span-bold" ">Cancel</span>
+				<a class="btn btn-grey" id="cancel">
+					<span class="span-bold">Cancel</span>
 				</a>
 			</li>
 			<li class="nav-item">
@@ -20,3 +20,9 @@
 		</ul>
 	</div>
 </nav>
+
+<script type="text/javascript">
+	$('#cancel').click(function(){
+		window.history.back()
+	})
+</script>

@@ -16,16 +16,21 @@
 								echo $value->GENRE_NAME." ";
 							} ?>
 						</span></h5>
+						<h5>Author: <span>
+							<a href="<?= site_url('profile/'.$user) ?>">
+								<?= $user ?>
+							</a></span>
+						</h5>
 					</div>
 					<div class="col-sm-1" >
-						<?php if ($story[0]->USER_ID == $this->session->userid) { ?>
+						<?php if ($isMine) { ?>
 								<a class="btn btn-orange btn-sm" style="float: right;" href="<?= $story[0]->STORY_ID.'/edit' ?>">
 									<span>edit</span>
 								</a>
 						<?php } ?>
 					</div>
 					<div class="col-sm-1" >
-						<?php if ($story[0]->USER_ID == $this->session->userid) { ?>
+						<?php if ($isMine) { ?>
 								<a class="btn btn-danger btn-sm" style="float: right;" href="<?= $story[0]->STORY_ID.'/delete' ?>">
 									<span>delete</span>
 								</a>
@@ -41,7 +46,11 @@
 
 	<h3 style="margin-top: 35px;">
 		Chapter List
-		<button class="btn btn-sm btn-primary" hidden><b>+ Add Chapter</b></button>
+		<?php if ($isMine) { ?>
+			<a class="btn btn-sm btn-primary" href="<?= current_url().'/create-chapter' ?>">
+				<b>+ Add Chapter</b>
+			</a>
+		<?php } ?>
 	</h3>
 	<!-- TABLE Chapter -->
 	<div class="row">
@@ -52,7 +61,9 @@
 					<th scope="col">Judul Chapter</th>
 					<th scope="col">View</th>
 					<!-- <th scope="col">Status</th> -->
+					<?php if($isMine) {?>
 					<th scope="col">Aksi</th>
+					<?php } ?>
 				</thead>
 				<tbody>
 					<?php foreach ($table as $value) {
@@ -60,11 +71,6 @@
 					} ?>
 				</tbody>
 			</table>
-			<div class="card" hidden>
-				<div class="card-body" style="text-align: center; background: rgba(0,0,0,0.1);">
-					<button class="btn btn-orange btn-lg"> <span>+ Add Chapter</span> </button>
-				</div>
-			</div>
 		</div>
 	</div>
 
@@ -74,13 +80,12 @@
 	$(document).ready(function(e){
 	  var url = '<?= site_url("story/get-chapter/".$story[0]->STORY_ID) ?>';
 	  $('#chapterList').DataTable({
-	     // "pageLength" : 10,
-	     // "serverSide": true,
-	     // "order": [[0, "asc" ]],
-	     // "ajax":{
-	     //          url :  url,
-	     //          type : 'POST'
-	     //        },
+  		 	pageLength: 10,
+			lengthChange: false,
+  		  	processing: true,
+	  		language: {
+	          	zeroRecords: '<?= $zeroRecordMsg ?>'
+          	}
 	  }); // End of DataTable
 	});
 </script>

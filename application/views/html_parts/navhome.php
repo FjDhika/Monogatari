@@ -13,14 +13,11 @@
           Categories
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Acak</a>
-          <a class="dropdown-item" href="#">Fantasi</a>
-          <a class="dropdown-item" href="#">Fiksi</a>
-          <a class="dropdown-item" href="#">Horor</a>
-          <a class="dropdown-item" href="#">Humor</a>
-          <a class="dropdown-item" href="#">Misteri</a>
-          <a class="dropdown-item" href="#">Non - Fiksi</a>
-          <a class="dropdown-item" href="#">Roman</a>
+          <?php foreach ($genre_list as $value) { ?>
+            <a class="dropdown-item" href="<?= site_url('/story/discover/'.$value->GENRE_ID) ?>">
+              <?= $value->GENRE_NAME ?>
+            </a>   
+          <?php } ?>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Pilihan Editor</a>
           <a class="dropdown-item" href="#">Best to Read</a>

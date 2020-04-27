@@ -10,6 +10,7 @@ class LandingPageController extends CI_Controller
 	
 	function __construct(){
 		parent::__construct();
+		$this->load->model('genreModel');
 	}
 	
 	function index(){
@@ -17,6 +18,7 @@ class LandingPageController extends CI_Controller
 			redirect(site_url('/dashboard'));
 		}else{
 			$data['page_title'] = $this->page_title;
+			$data['genre_list'] = $this->genreModel->getGenres();
 			$this->load->view("landingPageView",$data);	
 		}
 	}

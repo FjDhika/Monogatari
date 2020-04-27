@@ -15,6 +15,7 @@ class StoryController extends CI_Controller
 		$this->load->model('genreModel');
 		$this->load->model('storyModel');
 		$this->load->model('chapterModel');
+		$this->load->model('userModel');
 	}
 //=========================== Function to manage stories ========================
 	
@@ -59,9 +60,27 @@ class StoryController extends CI_Controller
 
 	// Menampilkan halaman detail cerita
 	function detailStory($storyid){
+		
 		$data = $this->getStoryData($storyid);
 		$data['page_title'] = "Detail ".$this->page_title;
-		$data['table'] = $this->renderChapterData($storyid,true);
+		$data['genre_list'] = $this->genreModel->getGenres();
+		$user = $this->userModel->getUser($data['story'][0]->USER_ID);
+		$data['user'] = $user[0]->USERNAME;
+
+		if($data['story'][0]->USER_ID == $this->session->userid){
+			$link = current_url().'/create-chapter';
+			$data['zeroRecordMsg'] = '<div class="card">'.
+			'<div class="card-body" style="text-align: center; background: rgba(0,0,0,0.1);">'.
+				'<a class="btn btn-orange btn-lg" href="'.$link.'"> <span>+ Add Chapter</span> </a>'.
+			'</div></div>';
+		}else{
+			$data['zeroRecordMsg'] = 'No Chapter Available';
+		}
+
+		$data['isMine'] = $this->isMine($data['story'][0]->USER_ID);
+
+		$data['table'] = $this->renderChapterData($storyid,$data['isMine']);
+
 		$this->load->view("story/detailStoryView",$data);
 	}
 
@@ -132,9 +151,11 @@ class StoryController extends CI_Controller
 	function renderChapterDetail($chapterid){
 		$data['page_title'] = $this->page_title_chapter;
 		$data['chapter'] = $this->chapterModel->getChapterByID($chapterid);
-		if(isset($data['chapter']))
+
+		if(isset($data['chapter'])){
+			$data['isMine'] = $this->isMine($data['chapter']->USER_ID);
 			$this->load->view('chapters/detailChapterView',$data);
-		else
+		}else
 			echo "not found";
 	}
 
@@ -223,9 +244,22 @@ class StoryController extends CI_Controller
 	// Controller untuk Halaman Discovery
 	function discoverPage($param){
 		$data['page_title'] = $this->page_title;
+		$data['genre_list'] = $this->genreModel->getGenres();
+		$data['zeroRecordMsg'] = 'No Story Found';
+
 		if ($param == 'my') {
+			$link = site_url('/new-story');
 			$story = $this->storyModel->getStoryByUserID($this->session->userid);
+			$data['zeroRecordMsg'] = '<div class="card">'.
+		'<div class="card-body" style="text-align: center; background: rgba(0,0,0,0.1);">'.
+			'<a class="btn btn-orange btn-lg" href="'.$link.'"> <span>+ Add Story</span> </a>'.
+		'</div></div>';
+		}elseif ($param == 'all') {
+			$story = $this->storyModel->getAllStory();	
+		}else{
+			$story = $this->storyModel->getStoryByGenreID($param);
 		}
+
 		$data['row'] = renderCardStory($story);
 		$this->load->view('story/browseStory',$data);
 	}
@@ -249,18 +283,29 @@ class StoryController extends CI_Controller
 	function renderChapterData($storyid, $ismine){
 		$data = array();
 		$chapter = $this->chapterModel->getChapterByStoryID($storyid);
-		// if ($ismine) {
 		foreach ($chapter as $key => $value) {
-			$data[] = "<tr>".
-						"<td>".($key+1)."</td>".
-						"<td>". $value->CHAPTER_TITLE." </td>".
-						"<td><a href='".site_url("chapter/read/".$value->CHAPTER_ID)."' class='btn btn-orange mr-1'>Read</a></td>".
-						"<td><a href='".site_url("chapter/edit/".$value->CHAPTER_ID)."' class='btn btn-warning mr-1'>Edit</a>".
-							"<a href='".site_url("chapter/delete/".$value->CHAPTER_ID)."' class='btn btn-danger mr-1'>delete</a>".
-				 "</tr>";
+
+			if ($ismine) {
+				$data[$key] = "<tr>".
+							"<td>".($key+1)."</td>".
+							"<td>". $value->CHAPTER_TITLE." </td>".
+							"<td><a href='".site_url("chapter/read/".$value->CHAPTER_ID)."' class='btn btn-orange mr-1'>Read</a></td>".
+							"<td><a href='".site_url("chapter/edit/".$value->CHAPTER_ID)."' class='btn btn-warning mr-1'>Edit</a>".
+								"<a href='".site_url("chapter/delete/".$value->CHAPTER_ID)."' class='btn btn-danger mr-1'>delete</a>".
+							"</tr>";
+			}else{
+				$data[$key] = "<tr>".
+							"<td>".($key+1)."</td>".
+							"<td>". $value->CHAPTER_TITLE." </td>".
+							"<td><a href='".site_url("chapter/read/".$value->CHAPTER_ID)."' class='btn btn-orange mr-1'>Read</a></td>".
+							"</tr>";
+			}
 		}
 		return $data;
-		// }
+	}
+
+	function isMine($userid){
+		return $userid == $this->session->userid;
 	}
 }
 

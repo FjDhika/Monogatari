@@ -16,20 +16,21 @@
 
 <div class="container py-4">
     <div class="row">
-      <div class="col-12">
-        
-        <table id="dt" class="table w-100">
-          <thead>
-            <tr>
-              <th>stories</th>
-            </tr>
-          </thead>
-          <tbody class="row">
-          	<?php foreach ($row as $value) {
-						echo $value;
-					} ?>
-          </tbody>
-        </table>
+      <div class="col-12 card">
+        <div class="card-body">
+	        <table id="dt" class="table w-100">
+	          <thead>
+	            <tr>
+	              <th>stories</th>
+	            </tr>
+	          </thead>
+	          <tbody class="row">
+	          	<?php foreach ($row as $value) {
+							echo $value;
+						} ?>
+	          </tbody>
+	        </table>
+        </div>
       </div>
     </div>
   </div> <!-- end container -->
@@ -38,17 +39,18 @@
 		
 	$(document).ready(function() {
 		$("#dt thead").hide();
-        var dt = $('#dt').DataTable({
-        	pageLength: 20,
-       		lengthChange: false,
-         	processing: true,
-         	language: {  
-            	  paginate: {
-                  previous: "<",
-                  next: ">"
-              },
-            },
-        });
+    var dt = $('#dt').DataTable({
+    	pageLength: 20,
+   		lengthChange: false,
+     	processing: true,
+     	language: {  
+        	  paginate: {
+                previous: "<",
+                next: ">"
+          	  },
+          	  zeroRecords: '<?= $zeroRecordMsg ?>'
+        },
+    });
 
        dt.on('draw', function(data){
         $('#dt tbody').addClass('row');

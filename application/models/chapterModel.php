@@ -44,7 +44,13 @@ class chapterModel extends CI_Model
 	}
 
 	function getChapterByID($chapterid){
-		$chapter = $this->db->get_where('chapters',array('CHAPTER_ID'=>$chapterid))
+		// $chapter = $this->db->get_where('chapters',array('CHAPTER_ID'=>$chapterid))
+		// 				->result();
+		$chapter = $this->db
+						->select('USER_ID, chapters.STORY_ID, CHAPTER_ID, CHAPTER_TITLE, CHAPTER_CONTENT, CHAPTER_STATUS')
+						->from('chapters')
+						->join('stories','chapters.STORY_ID = stories.STORY_ID and CHAPTER_ID = '. "'$chapterid'")
+						->get()
 						->result();
 		return @$chapter[0];
 	}
