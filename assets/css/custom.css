@@ -15,10 +15,54 @@ p{
 	margin: 0 0 12px;
 }
 
-<<<<<<< Updated upstream
-=======
 ul.navbar-nav li.nav-item{
 	margin-left: 8px;
+}
+
+.banner{
+	position: relative;
+	min-height: 100px;
+	background: #EDEDED;
+	padding: 50px 0 50px;
+}
+
+.banner h2{
+	padding: 0;
+	margin: 0;
+	font-weight: 700;
+	font-size: 85px;
+	color: #FCA331;
+	font-family: poppins;
+}
+
+.banner p{
+	margin-top: 10px;
+	margin-right: 10px;
+	font-size: 16px;
+	color: black;
+	font-family: roboto;
+}
+
+.banner button{
+	margin-top: 5px;
+	width: 120px;
+	height: 40px;
+	font-size: 16px;
+}
+
+.pict{
+  width: 100%;
+  height: 425px;
+
+}
+
+.tools{
+	padding: 50px 0 50px;
+	justify-content: center;
+}
+
+.icon{
+	color:white;
 }
 
 .modal-header{
@@ -199,7 +243,7 @@ ul.navbar-nav li.nav-item{
 }
 
 .search-btn{
-	color:#e84118;
+	color:#0466C8;
 	float: right;
 	width: 40px;
 	height: 40px;
@@ -339,6 +383,7 @@ ul.navbar-nav li.nav-item{
 .input-group label {
 	display: block;
 	text-align: left;
+	color:white;
 	margin: 3px;
 }
 
