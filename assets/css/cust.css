@@ -52,17 +52,52 @@ ul.navbar-nav li.nav-item{
 
 .pict{
   width: 100%;
-  height: 425px;
-
+  max-height: 500px;
 }
 
 .tools{
 	padding: 50px 0 50px;
 	justify-content: center;
+	align-content: center;
 }
 
-.icon{
+.tools h3{
 	color:white;
+	text-align: center;
+	font-family: roboto;
+	font-size: 24pt;
+}
+
+.tools img{
+	margin-top: 50px;
+	width: 70%;
+	height: 200px;
+	justify-content: center;
+	display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+}
+
+.tools h2{
+	margin-top: 10px;
+	color: #FCA331;
+}
+
+.tools p{
+	margin-top: 5px;
+	color: white;
+}
+
+.book{
+	padding: 100px 0 50px;
+	justify-content: center;
+	align-content: center;
+}
+
+.book h3{
+	color:white;
+	font-family: roboto;
+	font-size: 24pt;
 }
 
 .modal-header{
