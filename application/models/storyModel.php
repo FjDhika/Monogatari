@@ -31,6 +31,11 @@ class StoryModel extends CI_Model
 
 	function updateStory($id,$title,$synopsis,$cover, $genres){
 
+		$oldStoriesCover = $this->getStory($id);
+		if(!isset($cover)){
+			$cover = $oldStoriesCover[0]->COVER;
+		}
+
 		$time = local_to_gmt(time());
 		$now = mdate('%Y/%m/%d');
 		$data = array(	'STORY_ID' => $id,
@@ -66,6 +71,10 @@ class StoryModel extends CI_Model
 		return $this->db->insert_batch('story_genres',$data);
 	}
 
+	function deleteStory($storyid){
+		return $this->db->delete('stories',array('STORY_ID'=>$storyid));
+	}
+
 	function getStory($storyid){
 		$story = $this->db->get_where('stories',array('STORY_ID'=>$storyid))
 						->result();
@@ -74,6 +83,22 @@ class StoryModel extends CI_Model
 									   ->where(array('STORY_ID'=>$storyid))
 									   ->get()->result();
 		return $story;
+	}
+
+	function getAllStory(){
+		return $this->db->get('stories')->result();
+
+	}
+
+	function getStoryByUserID($userid){
+		$story = $this->db->get_where('stories',array('USER_ID'=>$userid))
+						->result();
+		return $story;
+	}
+
+	function getStoryByGenreID($genreid){
+		$sql = 'select username,STORY_TITLE, STORY_ID, COVER from stories JOIN users ON stories.USER_ID = users.USER_ID and stories.STORY_ID in ( select STORY_ID from story_genres WHERE GENRE_ID = ?)';
+		return $this->db->query($sql,array($genreid))->result();
 	}
 }
 

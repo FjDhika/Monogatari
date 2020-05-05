@@ -6,7 +6,7 @@
  */
 class RegisterController extends CI_Controller
 {
-	private $page_title = "Register";
+	private $page_title = "Register - Monogatari";
 	
 	function __construct(){
 		parent::__construct();

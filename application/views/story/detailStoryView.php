@@ -9,18 +9,30 @@
 			</div>
 			<div class="col-lg-9 col-sm-12 col-md-9">
 				<div class="row">
-					<div class="col-lg-11">
+					<div class="col-lg-10">
 						<h5>Judul : <span><?= $story[0]->STORY_TITLE ?></span></h5>
 						<h5>Genre : <span>
-							<?php foreach ($genre as $value) {
+							<?php foreach ($genres as $value) {
 								echo $value->GENRE_NAME." ";
 							} ?>
 						</span></h5>
+						<h5>Author: <span>
+							<a href="<?= site_url('profile/'.$user) ?>">
+								<?= $user ?>
+							</a></span>
+						</h5>
 					</div>
-					<div class="col-lg-1" >
-						<?php if ($story[0]->USER_ID == $this->session->userid) { ?>
+					<div class="col-sm-1" >
+						<?php if ($isMine) { ?>
 								<a class="btn btn-orange btn-sm" style="float: right;" href="<?= $story[0]->STORY_ID.'/edit' ?>">
 									<span>edit</span>
+								</a>
+						<?php } ?>
+					</div>
+					<div class="col-sm-1" >
+						<?php if ($isMine) { ?>
+								<a class="btn btn-danger btn-sm" style="float: right;" href="<?= $story[0]->STORY_ID.'/delete' ?>">
+									<span>delete</span>
 								</a>
 						<?php } ?>
 					</div>
@@ -34,31 +46,48 @@
 
 	<h3 style="margin-top: 35px;">
 		Chapter List
-		<button class="btn btn-sm btn-primary" hidden><b>+ Add Chapter</b></button>
+		<?php if ($isMine) { ?>
+			<a class="btn btn-sm btn-primary" href="<?= current_url().'/create-chapter' ?>">
+				<b>+ Add Chapter</b>
+			</a>
+		<?php } ?>
 	</h3>
 	<!-- TABLE Chapter -->
 	<div class="row">
 		<div class="col-lg-12 col-md-12 col-sm-12">
-			<table class="table" style="margin-bottom: 0">
+			<table class="table" style="margin-bottom: 0" id="chapterList">
 				<thead class="thead-light">
 					<th scope="col">#</th>
 					<th scope="col">Judul Chapter</th>
 					<th scope="col">View</th>
-					<th scope="col">Status</th>
+					<!-- <th scope="col">Status</th> -->
+					<?php if($isMine) {?>
 					<th scope="col">Aksi</th>
+					<?php } ?>
 				</thead>
 				<tbody>
-					
+					<?php foreach ($table as $value) {
+						echo $value;
+					} ?>
 				</tbody>
 			</table>
-			<div class="card">
-				<div class="card-body" style="text-align: center; background: rgba(0,0,0,0.1);">
-					<button class="btn btn-orange btn-lg"> <span>+ Add Chapter</span> </button>
-				</div>
-			</div>
 		</div>
 	</div>
 
 </div>
+
+<script type="text/javascript">
+	$(document).ready(function(e){
+	  var url = '<?= site_url("story/get-chapter/".$story[0]->STORY_ID) ?>';
+	  $('#chapterList').DataTable({
+  		 	pageLength: 10,
+			lengthChange: false,
+  		  	processing: true,
+	  		language: {
+	          	zeroRecords: '<?= $zeroRecordMsg ?>'
+          	}
+	  }); // End of DataTable
+	});
+</script>
 
 <?php require_once APPPATH."views/html_parts/html_foot.php" ?>

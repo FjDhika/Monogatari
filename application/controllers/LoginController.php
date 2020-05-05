@@ -6,7 +6,7 @@
  */
 class LoginController extends CI_Controller
 {
-	private $page_title = "Login";
+	private $page_title = "Login - Monogatari";
 	
 	function __construct(){
 		parent::__construct();

@@ -3,6 +3,7 @@
 <head>
 	<title><?= $page_title ?></title>
 
+<!-- ditambah hilda -->
 	<!-- css dashboard template -->
     <!-- Fontfaces CSS-->
     <link href="<?=base_url('assets/backend/css/font-face.css')?>" rel="stylesheet" media="all">
@@ -55,9 +56,20 @@
 
 	<script type="text/javascript" src="<?= base_url('assets/js/jquery-3.4.1.slim.min.js'); ?>"></script>
 	<script type="text/javascript" src="<?= base_url('assets/js/bootstrap-select.js'); ?>"></script>
+<!-- end ditambah hilda -->
+	<script type="text/javascript" src="<?= base_url('assets/js/jquery.js'); ?>"></script>
 	<script type="text/javascript" src="<?= base_url('assets/js/bootstrap.bundle.min.js'); ?>"></script>
+	<script type="text/javascript" src="<?= base_url('assets/js/bootstrap-select.js'); ?>"></script>
+	<script type="text/javascript" src="<?= base_url('assets/plugins/dataTable/datatables.js') ?>"></script>
+
 	<link href="<?= base_url('assets/css/bootstrap.min.css'); ?>" rel="stylesheet">
 	<link href="<?= base_url('assets/css/bootstrap-select.css'); ?>" rel="stylesheet">
 	<link href="<?= base_url('assets/css/custom.css'); ?>" rel="stylesheet">
+	<link href="<?= base_url('assets/plugins/dataTable/datatables.css') ?>" rel="stylesheet">
+	<link href="<?= base_url('assets/plugins/dataTable/dataTables.bootstrap4.css'); ?>" rel="stylesheet">
+	<link href="<?= base_url('assets/plugins/dataTable/dataTables.jqueryui.css'); ?>" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="icon" href="<?= base_url('assets/image/logo1.png'); ?>" type="image/x-icon">
+
 </head>
 <body>

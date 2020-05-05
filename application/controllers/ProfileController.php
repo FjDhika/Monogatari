@@ -11,22 +11,67 @@ class ProfileController extends CI_Controller
 	function __construct(){
 		parent::__construct();
 		$this->load->model('userProfileModel','profileModel');
+		$this->load->model('userModel');
+		$this->load->model('genreModel');
+		$this->load->model('storyModel');
 		$this->load->helper('CalculateDate');
+		$this->load->helper('renderTable');
 	}
 
 	function index(){
 
 		if(isset($this->session->profileid)){
 			$result = $this->profileModel->getData($this->session->profileid);
+			$user = $this->userModel->getUser($this->session->userid);
+
+			$data['isMine'] = true;
 
 			$data['name'] = ($result[0]->DISPLAY_NAME != null)?$result[0]->DISPLAY_NAME:$_SESSION['username'];
+			$data['username'] = $_SESSION['username'];
 			$data['age'] = ($result[0]->BIRTH_DATE != null)?calculateDate($result[0]->BIRTH_DATE):"-";
 			$data['gender'] = ($result[0]->GENDER != null)?$result[0]->GENDER:"-";
+			$data['date_created'] = $user[0]->DATE_CREATED;
+			
+			$data['genre_list'] = $this->genreModel->getGenres();
+			//get story data
+			$story = $this->storyModel->getStoryByUserID($this->session->userid);
+			$data['row'] = renderCardStory($story);
+			$data['zeroRecordMsg'] = 'You Have No Stories yet';
 
 			$data['page_title'] = $this->page_title;
 			$this->load->view('profiles/profileView',$data);
 		}else{
 			redirect(site_url('/signin-form'));
+		}
+	}
+
+	function viewProfile($username){
+		$user = $this->userModel->getUserByUserName($username);
+		if ($user != null) {
+			$result = $this->profileModel->getData($user[0]->PROFILE_ID);
+
+			$data['isMine'] = $this->isMine($user[0]->USER_ID);
+			if ($data['isMine'])
+				$data['zeroRecordMsg'] = 'You Have No Stories yet';
+			else
+				$data['zeroRecordMsg'] = 'This User Has No Stories yet';
+
+			$data['name'] = ($result[0]->DISPLAY_NAME != null)?$result[0]->DISPLAY_NAME:$username;
+			$data['username'] = $username;
+			$data['age'] = ($result[0]->BIRTH_DATE != null)?calculateDate($result[0]->BIRTH_DATE):"-";
+			$data['gender'] = ($result[0]->GENDER != null)?$result[0]->GENDER:"-";
+			$data['date_created'] = $user[0]->DATE_CREATED;
+			
+			$data['genre_list'] = $this->genreModel->getGenres();
+
+			//get story data
+			$story = $this->storyModel->getStoryByUserID($user[0]->USER_ID);
+			$data['row'] = renderCardStory($story);
+
+			$data['page_title'] = $this->page_title;
+			$this->load->view('profiles/profileView',$data);
+		}else{
+			echo "user not found";
 		}
 	}
 
@@ -39,6 +84,7 @@ class ProfileController extends CI_Controller
 			$data['name'] = $result[0]->DISPLAY_NAME;
 			$data['date'] = $result[0]->BIRTH_DATE;
 			$data['gender'] = $result[0]->GENDER;
+			$data['genre_list'] = $this->genreModel->getGenres();
 
 			$data['page_title'] = "Edit ".$this->page_title;
 			$this->load->view('profiles/editProfileView',$data);
@@ -87,6 +133,10 @@ class ProfileController extends CI_Controller
 		}else{
 			redirect(site_url('/signin-form'));
 		}
+	}
+
+	function isMine($userid){
+		return $userid == $this->session->userid;
 	}
 }
 

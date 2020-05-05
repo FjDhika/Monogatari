@@ -24,11 +24,15 @@ class userModel extends CI_Model
 		return $result;
 	}
 
-	//function to get userProfile, it return profile data
-	// @params $id is user id
-	// function getUserProfile($id){
+	function getUser($userid){
+		return $this->db->get_where('users',array('USER_ID' => $userid))
+						->result();
+	}
 
-	// }
+	function getUserByUserName($username){
+		return $this->db->get_where('users',array('USERNAME' => $username))
+						->result();
+	}
 
 	// function to add user(register), it return boolean (register success or not)
 	// @params $username is new username, $passwor is new password
@@ -63,8 +67,7 @@ class userModel extends CI_Model
 		$profile = $this->db->get_where('users_profile',array('profile_id'=>$profileid))
 							->result();
 
-		return sizeof($user)==0 && sizeof($profile) == 0;
-		// var_dump($user);
+		return sizeof($user) == 0 && sizeof($profile) == 0;
 	}
 }
 

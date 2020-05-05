@@ -67,6 +67,7 @@ $route['dashboard'] = 'DashboardController';
 
 //Route for Profile
 $route['profile'] = "ProfileController";
+$route['profile/(:any)'] = "ProfileController/viewProfile/$1";
 $route['editProfile'] = "ProfileController/editForm";
 $route['editProses'] = "ProfileController/editProcess";
 
@@ -75,5 +76,17 @@ $route['new-story'] = "StoryController";
 $route['new-story/proses'] = "StoryController/newStoryProses";
 $route['story/(:any)'] = "StoryController/detailStory/$1";
 $route['story/(:any)/edit'] = "StoryController/editStoryPage/$1";
+$route['story/(:any)/delete'] = "StoryController/deleteStoryProses/$1";
 $route['story/edit/proses/(:any)'] = "StoryController/editStoryProses/$1";
 $route['story/discover/(:any)'] = "StoryController/discoverPage/$1";
+// $route['story/get-chapter/(:any)'] = "StoryController/loadChapters/$1";
+
+//Route for chapter
+$route['chapter/tiny-mce-upload'] = 'StoryController/tinymceUpload';
+$route['chapter/tiny-mce-delete'] = 'StoryController/delete_image';
+$route['chapter/read/(:any)'] = 'StoryController/renderChapterDetail/$1';
+$route['chapter/edit/(:any)'] = 'StoryController/renderChapterEdit/$1';
+$route['chapter/edit/(:any)/proses'] = 'StoryController/editChapterProses/$1';
+$route['chapter/delete/(:any)'] = 'StoryController/deleteChapterProses/$1';
+$route['story/(:any)/create-chapter'] = 'StoryController/renderCreateChapter/$1';
+$route['story/(:any)/create-chapter/create'] = 'StoryController/newChapterProses/$1';

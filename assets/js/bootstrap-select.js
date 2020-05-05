@@ -2994,7 +2994,7 @@
           var dataAttributes = $this.data();
 
           for (var dataAttr in dataAttributes) {
-            if (dataAttributes.hasOwnProperty(dataAttr) && $.inArray(dataAttr, DISALLOWED_ATTRIBUTES) !== -1) {
+            if (Object.prototype.hasOwnProperty.call(dataAttributes,dataAttr) && $.inArray(dataAttr, DISALLOWED_ATTRIBUTES) !== -1) {
               delete dataAttributes[dataAttr];
             }
           }
@@ -3004,7 +3004,7 @@
           $this.data('selectpicker', (data = new Selectpicker(this, config)));
         } else if (options) {
           for (var i in options) {
-            if (options.hasOwnProperty(i)) {
+            if (Object.prototype.hasOwnProperty.call(options,i)) {
               data.options[i] = options[i];
             }
           }
