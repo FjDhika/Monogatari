@@ -43,6 +43,6 @@
       <a class="search-btn" href="#"><i class="fa fa-search"></i></a>
     </div>
 
-    <a class="btn btn-info" href="<?= site_url("/signin-form") ?>" role="button">Sign-In!</a>
+    <a class="btn btn-outline-warning" href="<?= site_url("/signin-form") ?>" role="button">Sign-In!</a>
   </div>
 </nav>
