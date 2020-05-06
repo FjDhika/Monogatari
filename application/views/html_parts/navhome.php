@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="#">
-    <img src="assets/image/logo3.png" height="40" alt="">
+    <img src="<?= base_url('assets/image/logo3.png'); ?>" height="40" alt="">
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -40,6 +40,6 @@
       <a class="search-btn" href="#"><i class="fa fa-search"></i></a>
     </div>
 
-    <a class="btn btn-info" href="<?= site_url("/signin-form") ?>" role="button">Sign-In!</a>
+    <a class="btn btn-outline-warning" href="<?= site_url("/signin-form") ?>" role="button">Sign-In!</a>
   </div>
 </nav>

@@ -4,9 +4,9 @@
             <p class="profile-name-card"> </p>
 
             <form class="form-signin" method="post" action="<?= base_url('index.php/signin') ?>">
-                <input class="form-control" type="text" name="username" required placeholder="Username" autofocus id="inputEmail" />
-                <input class="form-control" type="password" name="password" required placeholder="Password" id="inputPassword" />
-
+                <input class="form-control" type="text" name="username" required placeholder="Username" autofocus id="username" />
+                <input class="form-control" type="password" name="password" required placeholder="Password" id="password" />
+                <input type="text" name="submit" value="submit" hidden>
                 <button class="btn-sign" type="submit" name="login">Sign in</button>
 
             </form>
