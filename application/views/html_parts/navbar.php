@@ -2,7 +2,7 @@
 	<div class="container">
 		<!-- <div class="navbar-header"> -->
 			<a class="navbar-brand" href="#">
-			    <img src="assets/image/logo3.png" height="40" alt="">
+			    <img src="<?= base_url('assets/image/logo3.png'); ?>" height="40" alt="">
 			</a>
 			<ul class="navbar-nav ml-auto">
 				<li class="dropdown nav-item">

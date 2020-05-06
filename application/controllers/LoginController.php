@@ -25,7 +25,6 @@ class LoginController extends CI_Controller
 
 	function prosesLogin(){
 		// checking data for log in auth
-
 		if ($this->input->get_post('submit')) {
 			$username = $this->input->get_post('username');
 			$password = $this->input->get_post('password');
