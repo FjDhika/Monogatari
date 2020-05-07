@@ -77,6 +77,7 @@ $route['new-story/proses'] = "StoryController/newStoryProses";
 $route['story/(:any)'] = "StoryController/detailStory/$1";
 $route['story/(:any)/edit'] = "StoryController/editStoryPage/$1";
 $route['story/(:any)/delete'] = "StoryController/deleteStoryProses/$1";
+$route['story/(:any)/favorie'] = "FavoriteController/$1";
 $route['story/edit/proses/(:any)'] = "StoryController/editStoryProses/$1";
 $route['story/discover/(:any)'] = "StoryController/discoverPage/$1";
 // $route['story/get-chapter/(:any)'] = "StoryController/loadChapters/$1";
