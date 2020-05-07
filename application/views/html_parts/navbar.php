@@ -38,7 +38,7 @@
 			
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item">
-					<a class="nav-link" href="">Favorites</a>
+					<a class="nav-link" href="<?= site_url("/favorite") ?>">Favorites</a>
 				</li>
 				<li class="dropdown nav-item">
 					<a class="dropdown-toggle nav-link" href="" id="createNavbar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

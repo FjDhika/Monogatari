@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 07, 2020 at 09:15 AM
+-- Generation Time: May 07, 2020 at 11:24 AM
 -- Server version: 10.1.40-MariaDB
 -- PHP Version: 7.3.5
 
@@ -55,6 +55,19 @@ CREATE TABLE `favorites` (
   `USER_ID` varchar(16) COLLATE utf8_bin DEFAULT NULL,
   `STORY_ID` varchar(16) COLLATE utf8_bin DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Dumping data for table `favorites`
+--
+
+INSERT INTO `favorites` (`FAVORITE_ID`, `USER_ID`, `STORY_ID`) VALUES
+('5eb3c6da82dbe', '5e8bd8f21e307', '5e996a2815942'),
+('5eb3c6e37fdd8', '5e8bd8f21e307', '5e9965116a223'),
+('5eb3c6ec2b9a1', '5e8bd8f21e307', '5ea134601c82e'),
+('5eb3d258b02fd', '5eb2cfd093561', '5e996a2815942'),
+('5eb3d262c7535', '5eb2cfd093561', '5eb3b323defa5'),
+('5eb3d26c097b7', '5eb2cfd093561', '5e9965116a223'),
+('5eb3d274f09d9', '5eb2cfd093561', '5ea134601c82e');
 
 -- --------------------------------------------------------
 

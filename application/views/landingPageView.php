@@ -13,7 +13,7 @@
 			</div>
 
 			<div class="col-6">
-					<img src="<?= base_url("assets/image/book.png") ?>" class="pict">
+					<img src="<?= base_url("assets/image/book.png") ?>" class="pict"> 
 			</div>
 		</div>
 	</div>
@@ -54,14 +54,22 @@
 		<h3>Our Recommendation</h3>
 
 		<div class="row">
-			
+          	<?php
+          		foreach ($row as $value) {
+					echo $value;
+				}
+			?>
 		</div>
 	</div>
 </section>
 
 
 
-
+<script type="text/javascript">
+	$(".clickable-row").click(function() {
+	    window.location = $(this).data("href");
+	});
+</script>
 
 
 <?php require_once "modals/registerModal.php" ?>

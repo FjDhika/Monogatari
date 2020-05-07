@@ -11,6 +11,8 @@ class LandingPageController extends CI_Controller
 	function __construct(){
 		parent::__construct();
 		$this->load->model('genreModel');
+		$this->load->model('storyModel');
+		$this->load->helper('renderTable');
 	}
 	
 	function index(){
@@ -19,6 +21,11 @@ class LandingPageController extends CI_Controller
 		}else{
 			$data['page_title'] = $this->page_title;
 			$data['genre_list'] = $this->genreModel->getGenres();
+
+			$story = $this->storyModel->getRecommend(5);
+
+			$data['row'] = renderCardRecom($story);
+
 			$this->load->view("landingPageView",$data);	
 		}
 	}
