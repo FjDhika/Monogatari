@@ -156,6 +156,7 @@ class StoryController extends CI_Controller
 	// rendering detail chapter view
 	function renderChapterDetail($chapterid){
 		$data['page_title'] = $this->page_title_chapter;
+		$data['genre_list'] = $this->genreModel->getGenres();
 		$data['chapter'] = $this->chapterModel->getChapterByID($chapterid);
 
 		if(isset($data['chapter'])){
