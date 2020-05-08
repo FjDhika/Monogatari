@@ -1,7 +1,7 @@
 <nav class="navbar sticky-top navbar-expand-sm navbar-dark bg-dark">
 	<div class="container">
 		<!-- <div class="navbar-header"> -->
-			<a class="navbar-brand" href="#">
+			<a class="navbar-brand" href="<?= base_url() ?>">
 			    <img src="<?= base_url('assets/image/logo3.png') ?>" height="40" alt="">
 			</a>
 
@@ -37,6 +37,9 @@
 			</ul>
 			
 			<ul class="navbar-nav ml-auto">
+				<li class="nav-item">
+					<a class="nav-link" href="<?= site_url("/favorite") ?>">Favorites</a>
+				</li>
 				<li class="dropdown nav-item">
 					<a class="dropdown-toggle nav-link" href="" id="createNavbar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						<span>Stories</span>

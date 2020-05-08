@@ -34,6 +34,14 @@
 								<a class="btn btn-danger btn-sm" style="float: right;" href="<?= $story[0]->STORY_ID.'/delete' ?>">
 									<span>delete</span>
 								</a>
+						<?php }else{ ?>
+								<a class="btn btn-orange btn-sm" style="float: right;" href="<?= $story[0]->STORY_ID.'/favorite' ?>">
+									<?php if($isFavorite){ ?>
+										<span>Favorite</span>
+									<?php }else{ ?>
+										<span>Delete Favorite</span>
+									<?php } ?>
+								</a>
 						<?php } ?>
 					</div>
 				</div>

@@ -16,6 +16,7 @@ class StoryController extends CI_Controller
 		$this->load->model('storyModel');
 		$this->load->model('chapterModel');
 		$this->load->model('userModel');
+		$this->load->model('favoriteModel');
 	}
 //=========================== Function to manage stories ========================
 	
@@ -61,27 +62,32 @@ class StoryController extends CI_Controller
 	// Menampilkan halaman detail cerita
 	function detailStory($storyid){
 		
-		$data = $this->getStoryData($storyid);
-		$data['page_title'] = "Detail ".$this->page_title;
-		$data['genre_list'] = $this->genreModel->getGenres();
-		$user = $this->userModel->getUser($data['story'][0]->USER_ID);
-		$data['user'] = $user[0]->USERNAME;
+		if($this->session->userid){
+			$data = $this->getStoryData($storyid);
+			$data['page_title'] = "Detail ".$this->page_title;
+			$data['genre_list'] = $this->genreModel->getGenres();
+			$user = $this->userModel->getUser($data['story'][0]->USER_ID);
+			$data['user'] = $user[0]->USERNAME;
+			$data['isFavorite'] = $this->favoriteModel->checkFavorite($storyid,$this->session->userid);
 
-		if($data['story'][0]->USER_ID == $this->session->userid){
-			$link = current_url().'/create-chapter';
-			$data['zeroRecordMsg'] = '<div class="card">'.
-			'<div class="card-body" style="text-align: center; background: rgba(0,0,0,0.1);">'.
-				'<a class="btn btn-orange btn-lg" href="'.$link.'"> <span>+ Add Chapter</span> </a>'.
-			'</div></div>';
+			if($data['story'][0]->USER_ID == $this->session->userid){
+				$link = current_url().'/create-chapter';
+				$data['zeroRecordMsg'] = '<div class="card">'.
+				'<div class="card-body" style="text-align: center; background: rgba(0,0,0,0.1);">'.
+					'<a class="btn btn-orange btn-lg" href="'.$link.'"> <span>+ Add Chapter</span> </a>'.
+				'</div></div>';
+			}else{
+				$data['zeroRecordMsg'] = 'No Chapter Available';
+			}
+
+			$data['isMine'] = $this->isMine($data['story'][0]->USER_ID);
+
+			$data['table'] = $this->renderChapterData($storyid,$data['isMine']);
+
+			$this->load->view("story/detailStoryView",$data);
 		}else{
-			$data['zeroRecordMsg'] = 'No Chapter Available';
+			redirect(site_url('/signin-form'));
 		}
-
-		$data['isMine'] = $this->isMine($data['story'][0]->USER_ID);
-
-		$data['table'] = $this->renderChapterData($storyid,$data['isMine']);
-
-		$this->load->view("story/detailStoryView",$data);
 	}
 
 	// Edit Cerita and Edit Proses Cerita
@@ -150,6 +156,7 @@ class StoryController extends CI_Controller
 	// rendering detail chapter view
 	function renderChapterDetail($chapterid){
 		$data['page_title'] = $this->page_title_chapter;
+		$data['genre_list'] = $this->genreModel->getGenres();
 		$data['chapter'] = $this->chapterModel->getChapterByID($chapterid);
 
 		if(isset($data['chapter'])){

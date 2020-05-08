@@ -100,6 +100,14 @@ class StoryModel extends CI_Model
 		$sql = 'select username,STORY_TITLE, STORY_ID, COVER from stories JOIN users ON stories.USER_ID = users.USER_ID and stories.STORY_ID in ( select STORY_ID from story_genres WHERE GENRE_ID = ?)';
 		return $this->db->query($sql,array($genreid))->result();
 	}
+
+	function getRecommend($jumlah){
+		$sql = 'select STORY_TITLE, fav.STORY_ID, COVER, jumlah from stories
+		join (select STORY_ID, count(story_id) as jumlah from favorites GROUP BY STORY_ID) as fav
+		on stories.STORY_ID = fav.STORY_ID ORDER BY `fav`.`jumlah`  DESC limit 0,'.$jumlah;
+
+		return $this->db->query($sql)->result();
+	}
 }
 
  ?>
