@@ -39,4 +39,23 @@ function renderCardRecom($data){
 	return $row;
 }
 
+function renderCardDashboard($data){
+
+	$row = array();
+	if($data){
+		foreach ($data as $key => $value) {
+			$row[] = '<div class="col-lg-3 col-md-4 col-sm-12 clickable-row"
+						data-href="'.site_url("story/".$value->STORY_ID).'">
+						<div class="card shadow-sm">
+							<img class="bg-placeholder-img card-img-top" src="'.base_url("assets/image/cover/$value->COVER").'" alt="" width="100%" height="225">
+							<div class="card-body" style="text-align:center;padding:0;">
+								<h4 class="card-header"> '.$value->STORY_TITLE.' </h4>
+							</div>
+						</div>
+					</div>';
+		}
+	}
+	return $row;
+}
+
  ?>

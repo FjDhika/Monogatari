@@ -19,12 +19,12 @@
             </a>   
           <?php } ?>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Pilihan Editor</a>
+          <!-- <a class="dropdown-item" href="#">Pilihan Editor</a> -->
           <a class="dropdown-item" href="#">Best to Read</a>
         </div>
       </li>
 
-      <li class="nav-item dropdown">
+      <!-- <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Community
         </a>
@@ -32,13 +32,13 @@
           <a class="dropdown-item" href="#">Writer</a>
           <a class="dropdown-item" href="#">Best-Recommendation</a>
         </div>
-      </li>
+      </li> -->
     </ul>
 
-    <div class="search">
+    <!-- <div class="search">
       <input class="search-text" type="text" name="" placeholder="Search..">
       <a class="search-btn" href="#"><i class="fa fa-search"></i></a>
-    </div>
+    </div> -->
 
     <a class="btn btn-outline-warning" href="<?= site_url("/signin-form") ?>" role="button">Sign-In!</a>
   </div>

@@ -101,12 +101,20 @@ class StoryModel extends CI_Model
 		return $this->db->query($sql,array($genreid))->result();
 	}
 
-	function getRecommend($jumlah){
+	function getRecommend($length){
 		$sql = 'select STORY_TITLE, fav.STORY_ID, COVER, jumlah from stories
 		join (select STORY_ID, count(story_id) as jumlah from favorites GROUP BY STORY_ID) as fav
-		on stories.STORY_ID = fav.STORY_ID ORDER BY `fav`.`jumlah`  DESC limit 0,'.$jumlah;
+		on stories.STORY_ID = fav.STORY_ID ORDER BY `fav`.`jumlah`  DESC limit 0,'.$length;
 
 		return $this->db->query($sql)->result();
+	}
+
+	function getNewStory($length){
+		return $this->db->select('STORY_TITLE, STORY_ID, COVER')
+						->order_by('DATE_ADDED','DESC')
+						->limit($length)
+						->get('stories')
+						->result();
 	}
 }
 
