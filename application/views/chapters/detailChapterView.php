@@ -9,7 +9,7 @@
 					<?php if ($isMine) { ?>
 						
 					<div style="float: right;" >
-						<a href="<?= site_url("chapter/edit/$chapter->CHAPTER_ID") ?>" class="btn btn-orange"><span>edit</span></a>
+						<a href="<?= site_url("chapter/edit/$chapter->CHAPTER_ID") ?>" class="btn btn-info"><span>edit</span></a>
 						<a href="<?= site_url("chapter/delete/$chapter->CHAPTER_ID") ?>" class="btn btn-danger"><span>delete</span></a>
 					</div>
 

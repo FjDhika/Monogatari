@@ -31,7 +31,7 @@
 	</header>
 </div>
 
-<div class="container" style="margin-top: 15px">
+<div class="container" style="margin-top: 15px; margin-bottom: 25px;">
 	<div class="row">
 		<div class="card col-sm-3">
 			<div class="card-body">

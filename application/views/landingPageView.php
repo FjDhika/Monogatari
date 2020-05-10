@@ -27,19 +27,19 @@
 
 		<div class="row">
 
-			<div class="col-4">
+			<div class="col-md-4">
 				<img src="<?= base_url("assets/image/read.png") ?>">
 				<h2>1. Reading</h2>
 				<p>You can read any book with many categories anywhere anytime without worries</p>
 			</div>
 
-			<div class="col-4">
+			<div class="col-md-4">
 				<img src="<?= base_url("assets/image/write.png") ?>">
 				<h2>2. Writing</h2>
 				<p>Share your creation to the world easily and start your own career as a writer, and you can go to public with your own creation</p>
 			</div>
 
-			<div class="col-4">
+			<div class="col-md-4">
 				<img src="<?= base_url("assets/image/share.png") ?>">
 				<h2>3. Sharing</h2>
 				<p>Sharing the story that makes your heart puonding to someone else, will make you satisfied. You can recommended and put in your favorite book in your own library also keep reading it as much as you want </p>

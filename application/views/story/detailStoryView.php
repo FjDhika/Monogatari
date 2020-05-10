@@ -24,7 +24,7 @@
 					</div>
 					<div class="col-sm-1" >
 						<?php if ($isMine) { ?>
-								<a class="btn btn-orange btn-sm" style="float: right;" href="<?= $story[0]->STORY_ID.'/edit' ?>">
+								<a class="btn btn-info btn-sm" style="float: right;" href="<?= $story[0]->STORY_ID.'/edit' ?>">
 									<span>edit</span>
 								</a>
 						<?php } ?>
@@ -52,18 +52,18 @@
 		</div>
 	</div>
 
-	<h3 style="margin-top: 35px;">
+	<h3 style="margin-top: 35px; color:white;">
 		Chapter List
 		<?php if ($isMine) { ?>
-			<a class="btn btn-sm btn-primary" href="<?= current_url().'/create-chapter' ?>">
+			<a class="btn btn-sm btn-warning" href="<?= current_url().'/create-chapter' ?>">
 				<b>+ Add Chapter</b>
 			</a>
 		<?php } ?>
 	</h3>
 	<!-- TABLE Chapter -->
-	<div class="row">
+	<div class="row" style="margin-bottom: 30px;">
 		<div class="col-lg-12 col-md-12 col-sm-12">
-			<table class="table" style="margin-bottom: 0" id="chapterList">
+			<table class="table" style="margin-bottom: 10px" id="chapterList">
 				<thead class="thead-light">
 					<th scope="col">#</th>
 					<th scope="col">Judul Chapter</th>
