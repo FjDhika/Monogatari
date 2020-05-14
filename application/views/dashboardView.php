@@ -8,7 +8,7 @@
 
 		<section class="Recom">
 			<h3 class="text-white">Our Recommendation</h3>
-			<div class="row">
+			<div class="row" style="margin-top: 30px;">
 	          	<?php
 	          		foreach ($recom as $value) {
 						echo $value;
@@ -17,9 +17,9 @@
 			</div>
 		</section>
 
-		<section class="new" style="margin-top: 40px;">
+		<section class="new" style="margin-top: 50px;">
 			<h3 class="text-white">New Stories</h3>
-			<div class="row">
+			<div class="row" style="margin-top: 30px;">
 	          	<?php
 	          		foreach ($new as $value) {
 						echo $value;

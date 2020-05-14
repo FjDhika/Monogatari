@@ -37,9 +37,9 @@
 						<?php }else{ ?>
 								<a class="btn btn-orange btn-sm" style="float: right;" href="<?= $story[0]->STORY_ID.'/favorite' ?>">
 									<?php if($isFavorite){ ?>
-										<span>Favorite</span>
+										<i class="fas fa-heart"></i>
 									<?php }else{ ?>
-										<span>Delete Favorite</span>
+										<i class="far fa-heart"></i>
 									<?php } ?>
 								</a>
 						<?php } ?>
