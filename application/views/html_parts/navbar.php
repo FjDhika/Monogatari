@@ -35,7 +35,7 @@
 			    </div>
 			  </li> -->
 			</ul>
-			
+			<?php if (isset($this->session->userid)): ?>
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item">
 					<a class="nav-link" href="<?= site_url("/favorite") ?>">Favorites</a>
@@ -62,6 +62,9 @@
 					</div>
 				</li>
 			</ul>
+			<?php else: ?>
+			<a class="btn btn-outline-warning" href="<?= site_url("/signin-form") ?>" role="button">Sign-In!</a>
+			<?php endif ?>
 		<!-- </div> -->
 	</div>
 </nav>

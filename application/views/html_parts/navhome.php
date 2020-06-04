@@ -18,9 +18,6 @@
               <?= $value->GENRE_NAME ?>
             </a>   
           <?php } ?>
-          <div class="dropdown-divider"></div>
-          <!-- <a class="dropdown-item" href="#">Pilihan Editor</a> -->
-          <a class="dropdown-item" href="#">Best to Read</a>
         </div>
       </li>
 
