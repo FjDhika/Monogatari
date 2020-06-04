@@ -17,9 +17,9 @@
 	<link href="<?= base_url('assets/plugins/dataTable/dataTables.bootstrap4.css'); ?>" rel="stylesheet">
 	<link href="<?= base_url('assets/plugins/dataTable/dataTables.jqueryui.css'); ?>" rel="stylesheet">
 	<link href="<?= base_url('assets/css/cust.css'); ?>" rel="stylesheet">
-	<link type="text/javascript"> src="<?= base_url('assets/fontawesome/js/all.min.js'); ?>"></link>
 	<script src="<?= base_url('assets/fontawesome/css/all.min.css'); ?>"></script>
 	<link rel="icon" href="<?= base_url('assets/image/logo1.png'); ?>" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" href="<?= base_url('assets/fontawesome/css/all.min.css'); ?>">
 
 </head>
 <body>
